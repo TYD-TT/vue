@@ -6,6 +6,7 @@ import './plugins/element.js'
 import './assets/css/global.css'
 // 导入字体图标
 import './assets/fonts/iconfont.css'
+import TreeTable from 'vue-table-with-tree-grid'
 
 import axios from 'axios'
 // 配置请求的根路径
@@ -23,3 +24,5 @@ new Vue({
     router,
     render: h => h(App)
 }).$mount('#app')
+
+Vue.component('tree-table', TreeTable)
