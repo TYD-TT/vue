@@ -1,22 +1,30 @@
 <template>
-<!-- 头部区域 -->
+  <!-- 头部区域 -->
   <el-container class="home-container">
     <el-header>
       <div>
-        <img src="../assets/heima.png" class="logo">
+        <img src="../assets/heima.png" class="logo" />
         <span>电商后台管理系统</span>
       </div>
       <el-button type="info" @click="logout">退出</el-button>
     </el-header>
     <!-- 页面主体区域 -->
-    <el-container >
-
+    <el-container>
       <!-- 侧边栏 -->
       <el-aside :width="isCollapse ? '64px' : '200px'">
         <!-- 侧边栏的折叠和展开 -->
         <div class="toggle-button" @click="toggleCollapse">|||</div>
         <!-- 侧边栏菜单区域 -->
-        <el-menu  background-color="#333744" text-color="#fff" active-text-color="#409EFE" unique-opened :collapse="isCollapse" :collapse-transition="false" router :default-active="activePath">
+        <el-menu
+          background-color="#333744"
+          text-color="#fff"
+          active-text-color="#409EFE"
+          unique-opened
+          :collapse="isCollapse"
+          :collapse-transition="false"
+          router
+          :default-active="activePath"
+        >
           <!-- 一级导航 -->
           <el-submenu :index="item.id + ''" v-for="item in menulist" :key="item.id">
             <!-- 一级菜单的模板区域 -->
@@ -28,13 +36,18 @@
             </template>
 
             <!-- 二级导航 -->
-            <el-menu-item :index="'/'+subItem.path" v-for="subItem in item.children" :key="subItem.id" @click="saveNavState('/'+subItem.path)">
+            <el-menu-item
+              :index="'/'+subItem.path"
+              v-for="subItem in item.children"
+              :key="subItem.id"
+              @click="saveNavState('/'+subItem.path)"
+            >
               <template slot="title">
-              <!-- 导航图标 -->
-              <i class="el-icon-menu"></i>
-              <!-- 导航名称 -->
-              <span>{{subItem.authName}}</span>
-            </template>
+                <!-- 导航图标 -->
+                <i class="el-icon-menu"></i>
+                <!-- 导航名称 -->
+                <span>{{subItem.authName}}</span>
+              </template>
             </el-menu-item>
           </el-submenu>
         </el-menu>
@@ -64,13 +77,12 @@ export default {
       },
       isCollapse: false,
       // 被激活的链接地址
-      activePath:'',
-
+      activePath: ''
     }
   },
   created () {
-    this.getMenuList(),
-    this.activePath=window.sessionStorage.getItem('activePath')
+    this.getMenuList()
+    this.activePath = window.sessionStorage.getItem('activePath')
   },
   methods: {
     logout () {
@@ -86,54 +98,53 @@ export default {
     toggleCollapse () {
       this.isCollapse = !this.isCollapse
     },
-    //保存链接的激活状态
+    // 保存链接的激活状态
     saveNavState (activePath) {
-      window.sessionStorage.setItem('activePath',activePath)
-      this.activePath=activePath
+      window.sessionStorage.setItem('activePath', activePath)
+      this.activePath = activePath
     }
   }
-
 }
 </script>
 
 <style lang="less" scoped>
-.home-container{
+.home-container {
   height: 100%;
 }
-.logo{
+.logo {
   border-radius: 50%;
   margin-left: 20px;
 }
-.el-header{
-  background-color: #373D41;
+.el-header {
+  background-color: #373d41;
   display: flex;
   justify-content: space-between;
   padding-left: 0;
   align-items: center;
   color: #fff;
   font-size: 20px;
-  > div{
+  > div {
     display: flex;
     align-items: center;
-    span{
+    span {
       margin-left: 15px;
     }
   }
 }
-.el-aside{
+.el-aside {
   background-color: #333744;
-  .el-menu{
+  .el-menu {
     border-right: none;
   }
 }
-.el-main{
-  background-color: #EAEDF1;
+.el-main {
+  background-color: #eaedf1;
 }
-.iconfont{
+.iconfont {
   margin-right: 10px;
 }
-.toggle-button{
-  background-color: #4A5064;
+.toggle-button {
+  background-color: #4a5064;
   font-size: 10px;
   line-height: 24px;
   color: #fff;

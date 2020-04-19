@@ -16,7 +16,6 @@
 </template>
 
 <script>
-
 // 导入echarts
 import echarts from 'echarts'
 import _ from 'lodash'
@@ -56,33 +55,26 @@ export default {
       }
     }
   },
-  created() {
-
-  },
-  methods: {
-
-  },
+  created () {},
+  methods: {},
   // 此时页面上的元素已经被渲染完毕
-  async mounted(){
+  async mounted () {
     // 3、基于准备好的dom，初始化echarts实例
-    var myChart = echarts.init(document.getElementById('main'));
+    var myChart = echarts.init(document.getElementById('main'))
 
     // 获取数据
-    const {data:res} = await this.$http.get('reports/type/1')
-    if(res.meta.status!==200){
+    const { data: res } = await this.$http.get('reports/type/1')
+    if (res.meta.status !== 200) {
       return this.$message.error('获取折线图数据失败')
     }
-
-
 
     // 4、指定图表的配置项和数据
     const result = _.merge(res.data, this.options)
     // 5、展示数据
-    myChart.setOption(result);
+    myChart.setOption(result)
   }
 }
 </script>
 
 <style lang="less" scoped>
-
 </style>

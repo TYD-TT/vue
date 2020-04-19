@@ -10,7 +10,7 @@
     <!-- 卡片视图 -->
     <el-card>
       <!-- stripe:实现隔行变色 -->
-      <el-table :data="rightsList" stripe  border>
+      <el-table :data="rightsList" stripe border>
         <el-table-column type="index"></el-table-column>
         <el-table-column prop="authName" label="权限名称"></el-table-column>
         <el-table-column prop="path" label="路径"></el-table-column>
@@ -23,37 +23,34 @@
         </el-table-column>
       </el-table>
     </el-card>
-
   </div>
 </template>
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       // 权限列表
-      rightsList:[]
+      rightsList: []
     }
   },
-  created(){
+  created () {
     // 获取所有权限
     this.getRightsList()
   },
   methods: {
     // 获取权限列表
-    async getRightsList(){
-      const {data:res} = await this.$http.get('rights/list')
-      if(res.meta.status!==200){
+    async getRightsList () {
+      const { data: res } = await this.$http.get('rights/list')
+      if (res.meta.status !== 200) {
         return this.$message.error('获取列表失败')
       }
-      this.rightsList=res.data
-      console.log('rightsList :', this.rightsList);
+      this.rightsList = res.data
+      console.log('rightsList :', this.rightsList)
     }
   }
-
 }
 </script>
 
 <style>
-
 </style>
